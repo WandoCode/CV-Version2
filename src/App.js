@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import FormEducation from "./Components/FormEducation";
+import FormPersonalInfos from "./Components/FormPersonalInfos";
+import DisplayPersonalInfos from "./Components/DisplayPersonalInfos";
+import DisplayEducation from "./Components/DisplayEducation";
 
-function App() {
+const App = () => {
+  const [personalInfos, setPersonalInfos] = useState({});
+  const [educationTitles, setEducationTitles] = useState([]);
+
+  const getPersonalInfos = (datasObject) => {
+    setPersonalInfos(datasObject);
+  };
+
+  const getTitle = (datasObject) => {
+    const educationTitlesUpdated = educationTitles.concat([datasObject]);
+    setEducationTitles(educationTitlesUpdated);
+  };
+
+  const updateEducation = (key) => {
+    const updatedEducation = educationTitles.filter((title) => {
+      return title.key !== key;
+    });
+    setEducationTitles(updatedEducation);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h3>Personal informations</h3>
+      <FormPersonalInfos sendDatas={getPersonalInfos} />
+      <DisplayPersonalInfos datas={personalInfos} />
+      <h3>Education</h3>
+      <FormEducation sendDatas={getTitle} />
+      <DisplayEducation datas={educationTitles} updateDatas={updateEducation} />
     </div>
   );
-}
+};
 
 export default App;
