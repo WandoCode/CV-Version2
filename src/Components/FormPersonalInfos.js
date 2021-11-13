@@ -49,9 +49,9 @@ function FormPersonalInfos(props) {
 
   const changeBtnSubmit = () => {
     if (editInputs) {
-      setBtnValue("Edit personal informations");
-    } else {
       setBtnValue("Add personal informations");
+    } else {
+      setBtnValue("Edit personal informations");
     }
   };
 

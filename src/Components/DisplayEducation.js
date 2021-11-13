@@ -17,8 +17,7 @@ function DisplayEducation(props) {
           <button
             onClick={() => {
               removeTitle(title.key);
-            }}
-          >
+            }}>
             Remove
           </button>
         </div>
